@@ -1,0 +1,27 @@
+:root {
+  /* prettier-ignore */
+  --font-sans-list:
+    "Pretendard Variable", "Pretendard",
+    -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  /* prettier-ignore */
+  --font-mono-list:
+    ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New";
+
+  --font-sans: var(--font-sans-list), sans-serif;
+  --font-mono: var(--font-mono-list), monospace;
+  --font-mono-sans:
+    var(--font-mono-list), var(--font-sans-list), monospace, sans-serif;
+
+  line-height: 1;
+  font-family: var(--font-sans);
+
+  font-size-adjust: none;
+  font-synthesis: style;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
