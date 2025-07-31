@@ -1,0 +1,23 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr repeat(5, 1fr);
+
+  height: 48px;
+}
+.row:nth-child(5n) {
+  border-bottom: 1px solid var(--sky-700);
+}
+.row:nth-child(10n) {
+  border-bottom: 2px solid var(--sky-700);
+}
+.row:last-child {
+  border-bottom: 0px;
+}
+
+.question {
+  align-content: center;
+
+  border-right: 1px solid var(--sky-700);
+  padding: 8px;
+  background-color: var(--sky-100);
+}
