@@ -1,20 +1,34 @@
 :root {
+  --sky-50: #f0f9ff;
+  --sky-100: #e0f2fe;
+  --sky-200: #bae6fd;
+  --sky-300: #7dd3fc;
+  --sky-400: #38bdf8;
+  --sky-500: #0ea5e9;
+  --sky-600: #0284c7;
+  --sky-700: #0369a1;
+  --sky-800: #075985;
+  --sky-900: #0c4a6e;
+  --sky-950: #082f49;
+
   /* prettier-ignore */
   --font-sans-list:
-    "Pretendard Variable", "Pretendard",
     -apple-system, BlinkMacSystemFont, system-ui,
-    Roboto, "Helvetica Neue", "Segoe UI",
+    "Helvetica Neue", Roboto, Arial,
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   /* prettier-ignore */
   --font-mono-list:
-    ui-monospace, SFMono-Regular, Menlo, Monaco,
+    ui-monospace, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New";
 
   --font-sans: var(--font-sans-list), sans-serif;
   --font-mono: var(--font-mono-list), monospace;
   --font-mono-sans:
     var(--font-mono-list), var(--font-sans-list), monospace, sans-serif;
+
+  word-break: keep-all;
+  overflow-wrap: break-word;
 
   line-height: 1;
   font-family: var(--font-sans);
@@ -24,4 +38,28 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  cursor: default;
+}
+
+body {
+  margin: 0;
+}
+
+:is(*, ::before, ::after) {
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+}
+
+:is(::before, ::after) {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+:is(img, svg) {
+  vertical-align: middle;
+}
+
+:is(a, button, input, label, select, summary, textarea) {
+  touch-action: manipulation;
 }
