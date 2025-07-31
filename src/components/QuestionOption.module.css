@@ -1,0 +1,54 @@
+.target {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.target > div {
+  align-self: center;
+  justify-self: center;
+  align-content: center;
+
+  border: 1px solid var(--sky-700);
+  border-radius: 9999px;
+  background-color: transparent;
+
+  width: 24px;
+  height: 24px;
+
+  color: var(--sky-700);
+}
+
+.checked > div {
+  border-color: #000;
+  border-color: var(--sky-900);
+  background-color: #000;
+
+  color: var(--sky-200);
+}
+
+@media (pointer: fine) {
+  .target:hover > div {
+    background-color: var(--sky-100);
+    outline: 2px solid var(--sky-700);
+    outline-offset: -1px;
+
+    font-weight: 700;
+  }
+
+  .checked:hover > div {
+    border-color: var(--sky-950);
+    background-color: var(--sky-950);
+    outline-color: var(--sky-950);
+  }
+}

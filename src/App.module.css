@@ -77,24 +77,3 @@
   padding: 8px;
   background-color: var(--sky-100);
 }
-
-.row button {
-  align-self: center;
-  justify-self: center;
-
-  border: 1px solid var(--sky-700);
-  border-radius: 9999px;
-  background-color: transparent;
-
-  width: auto;
-  height: 100%;
-  max-width: 24px;
-  max-height: 24px;
-  aspect-ratio: 1 / 1;
-
-  color: var(--sky-700);
-  font-family: var(--font-sans);
-  font-size: 14px;
-
-  cursor: pointer;
-}

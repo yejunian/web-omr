@@ -1,4 +1,5 @@
 import styles from "./App.module.css";
+import QuestionOption from "./components/QuestionOption";
 
 function App() {
   return (
@@ -15,11 +16,11 @@ function App() {
           {Array.from({ length: 45 }).map((_, index) => (
             <div key={index + 1} className={styles.row}>
               <div className={styles.question}>{index + 1}</div>
-              <button>1</button>
-              <button>2</button>
-              <button>3</button>
-              <button>4</button>
-              <button>5</button>
+              <QuestionOption>1</QuestionOption>
+              <QuestionOption>2</QuestionOption>
+              <QuestionOption>3</QuestionOption>
+              <QuestionOption>4</QuestionOption>
+              <QuestionOption>5</QuestionOption>
             </div>
           ))}
         </div>
