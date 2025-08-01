@@ -1,0 +1,33 @@
+.omr {
+  display: flex;
+  flex-direction: column;
+
+  border: 2px solid var(--sky-700);
+  border-top: 0px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+
+  border-top: 2px solid var(--sky-700);
+  border-bottom: 2px solid var(--sky-700);
+  background-color: var(--sky-100);
+  height: 48px;
+
+  text-align: center;
+}
+.header > :first-child {
+  align-content: center;
+
+  border-right: 1px solid var(--sky-700);
+  height: 100%;
+}
+.header > :last-child {
+  align-content: center;
+
+  height: 100%;
+}
