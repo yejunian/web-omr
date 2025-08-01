@@ -46,13 +46,15 @@ body {
   margin: 0;
 }
 
-:is(*, ::before, ::after) {
+*,
+::before,
+::after {
   box-sizing: border-box;
   background-repeat: no-repeat;
 }
 
-:is(::before, ::after) {
-  text-decoration: inherit;
+::before,
+::after {
   vertical-align: inherit;
 }
 
@@ -62,4 +64,19 @@ body {
 
 :is(a, button, input, label, select, summary, textarea) {
   touch-action: manipulation;
+}
+
+:is(button) {
+  font-family: var(--font-sans);
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+:is(input) {
+  font-family: var(--font-sans);
+  font-size: 16px;
+}
+:is(input[type="number"]) {
+  font-family: var(--font-mono);
 }

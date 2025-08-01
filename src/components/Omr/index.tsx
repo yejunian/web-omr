@@ -18,7 +18,7 @@ function Omr() {
   };
 
   return (
-    <div className={styles.omr}>
+    <section className={styles.omr}>
       <div className={styles.header}>
         <div>문번</div>
         <div>답란</div>
@@ -30,7 +30,7 @@ function Omr() {
         answers={answers}
         onAnswerChange={handleAnswerChange}
       />
-    </div>
+    </section>
   );
 }
 
