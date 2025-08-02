@@ -24,12 +24,7 @@ function Omr() {
         <div>답란</div>
       </div>
 
-      <Questions
-        length={45}
-        optionSize={5}
-        answers={answers}
-        onAnswerChange={handleAnswerChange}
-      />
+      <Questions answers={answers} onAnswerChange={handleAnswerChange} />
     </section>
   );
 }

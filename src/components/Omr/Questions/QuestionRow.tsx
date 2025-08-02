@@ -1,14 +1,17 @@
+import { useOmrStore } from "@/store/omr";
+
 import QuestionOption from "./QuestionOption";
 import styles from "./QuestionRow.module.css";
 
 type Props = {
   children: React.ReactNode;
-  optionSize: number;
   answer?: number | undefined;
   onAnswerChange?: (answer: number | undefined) => void;
 };
 
-function QuestionRow({ children, optionSize, answer, onAnswerChange }: Props) {
+function QuestionRow({ children, answer, onAnswerChange }: Props) {
+  const optionCount = useOmrStore((state) => state.optionCount);
+
   const handleCheckedChangeWith = (optionNumber: number) => {
     if (!onAnswerChange) {
       return undefined;
@@ -26,7 +29,7 @@ function QuestionRow({ children, optionSize, answer, onAnswerChange }: Props) {
   return (
     <div className={styles.row}>
       <div className={styles.number}>{children}</div>
-      {Array.from({ length: optionSize }, (_, index) => (
+      {Array.from({ length: optionCount }, (_, index) => (
         <QuestionOption
           key={index + 1}
           checked={answer === index + 1}
