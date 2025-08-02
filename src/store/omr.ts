@@ -1,54 +1,62 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 import { createSelectors } from "./createSelectors";
 
-const useOmrStoreBase = create<OmrState>()((set, get) => ({
-  questionCount: 45,
-  optionCount: 5,
+const useOmrStoreBase = create<OmrState>()(
+  persist(
+    (set, get) => ({
+      questionCount: 45,
+      optionCount: 5,
 
-  answers: {},
+      answers: {},
 
-  setOmrSettings: (settings) => {
-    const { questionCount, optionCount } = settings;
-    const nextSettings: Partial<OmrSettingsState> = {};
+      setOmrSettings: (settings) => {
+        const { questionCount, optionCount } = settings;
+        const nextSettings: Partial<OmrSettingsState> = {};
 
-    if (
-      questionCount &&
-      !Number.isNaN(questionCount) &&
-      questionCount > 0 &&
-      questionCount <= 200
-    ) {
-      nextSettings.questionCount = questionCount;
-    }
+        if (
+          questionCount &&
+          !Number.isNaN(questionCount) &&
+          questionCount > 0 &&
+          questionCount <= 200
+        ) {
+          nextSettings.questionCount = questionCount;
+        }
 
-    if (
-      optionCount &&
-      !Number.isNaN(optionCount) &&
-      optionCount >= 2 &&
-      optionCount <= 5
-    ) {
-      nextSettings.optionCount = optionCount;
-    }
+        if (
+          optionCount &&
+          !Number.isNaN(optionCount) &&
+          optionCount >= 2 &&
+          optionCount <= 5
+        ) {
+          nextSettings.optionCount = optionCount;
+        }
 
-    set(nextSettings);
-  },
+        set(nextSettings);
+      },
 
-  setAnswer: (question: number, answer: number | undefined) => {
-    const nextAnswers = { ...get().answers };
+      setAnswer: (question: number, answer: number | undefined) => {
+        const nextAnswers = { ...get().answers };
 
-    if (typeof answer === "number") {
-      nextAnswers[question] = answer;
-    } else {
-      delete nextAnswers[question];
-    }
+        if (typeof answer === "number") {
+          nextAnswers[question] = answer;
+        } else {
+          delete nextAnswers[question];
+        }
 
-    set({ answers: nextAnswers });
-  },
+        set({ answers: nextAnswers });
+      },
 
-  resetAnswer: () => {
-    set({ answers: {} });
-  },
-}));
+      resetAnswer: () => {
+        set({ answers: {} });
+      },
+    }),
+    {
+      name: "web-omr--omr",
+    },
+  ),
+);
 
 export const useOmrStore = createSelectors(useOmrStoreBase);
 
