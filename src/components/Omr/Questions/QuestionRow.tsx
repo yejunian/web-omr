@@ -4,35 +4,30 @@ import QuestionOption from "./QuestionOption";
 import styles from "./QuestionRow.module.css";
 
 type Props = {
-  children: React.ReactNode;
-  answer?: number | undefined;
-  onAnswerChange?: (answer: number | undefined) => void;
+  questionNumber: number;
 };
 
-function QuestionRow({ children, answer, onAnswerChange }: Props) {
-  const optionCount = useOmrStore((state) => state.optionCount);
+function QuestionRow({ questionNumber }: Props) {
+  const optionCount = useOmrStore.use.optionCount();
+  const answers = useOmrStore.use.answers();
+  const setAnswer = useOmrStore.use.setAnswer();
 
-  const handleCheckedChangeWith = (optionNumber: number) => {
-    if (!onAnswerChange) {
-      return undefined;
-    }
-
-    return (checked: boolean) => {
+  const handleCheckedChangeWith =
+    (optionNumber: number) => (checked: boolean) => {
       if (checked) {
-        onAnswerChange(optionNumber);
+        setAnswer(questionNumber, optionNumber);
       } else {
-        onAnswerChange(undefined);
+        setAnswer(questionNumber, undefined);
       }
     };
-  };
 
   return (
     <div className={styles.row}>
-      <div className={styles.number}>{children}</div>
+      <div className={styles.number}>{questionNumber}</div>
       {Array.from({ length: optionCount }, (_, index) => (
         <QuestionOption
           key={index + 1}
-          checked={answer === index + 1}
+          checked={answers.get(questionNumber) === index + 1}
           onCheckedChange={handleCheckedChangeWith(index + 1)}
         >
           {index + 1}

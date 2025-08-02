@@ -6,11 +6,13 @@ import { useOmrStore } from "@/store/omr";
 import styles from "./index.module.css";
 
 function Settings() {
-  const { questionCount, optionCount, setOmrSettings } = useOmrStore(
-    (state) => state,
-  );
+  const questionCount = useOmrStore.use.questionCount();
+  const optionCount = useOmrStore.use.optionCount();
+  const setOmrSettings = useOmrStore.use.setOmrSettings();
+  const resetAnswer = useOmrStore.use.resetAnswer();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [willReset, setWillReset] = useState(false);
   const [editingQuestionCount, setEditingQuestionCount] = useState(
     questionCount.toFixed(0),
   );
@@ -18,15 +20,20 @@ function Settings() {
     optionCount.toFixed(0),
   );
 
-  const handleToggleClick = () => {
-    const nextOpen = !isOpen;
+  const handleSettingsToggle = () => {
+    const nextIsOpen = !isOpen;
 
-    if (nextOpen) {
+    if (nextIsOpen) {
+      setWillReset(false);
       setEditingQuestionCount(questionCount.toFixed(0));
       setEditingOptionCount(optionCount.toFixed(0));
     }
 
-    setIsOpen(nextOpen);
+    setIsOpen(nextIsOpen);
+  };
+
+  const handleResetToggle = () => {
+    setWillReset(!willReset);
   };
 
   const handleChangeWith =
@@ -40,10 +47,21 @@ function Settings() {
   };
 
   const handleApplyClick = () => {
+    if (willReset) {
+      const willResetConfirm = confirm("입력한 응답을 모두 초기화합니다.");
+
+      if (willResetConfirm) {
+        resetAnswer();
+      } else {
+        return;
+      }
+    }
+
     setOmrSettings({
       questionCount: parseInt(editingQuestionCount, 10),
       optionCount: parseInt(editingOptionCount, 10),
     });
+
     setIsOpen(false);
   };
 
@@ -51,13 +69,23 @@ function Settings() {
     <section className={styles.settings}>
       <button
         className={clsx(styles.toggle, isOpen && styles.checked)}
-        onClick={handleToggleClick}
+        onClick={handleSettingsToggle}
       >
         설정
       </button>
 
       {isOpen ? (
         <div className={styles.content}>
+          <div className={styles.item}>
+            <label htmlFor="count-questions">응답 비우기</label>
+            <button
+              className={clsx(styles.toggle, willReset && styles.checked)}
+              onClick={handleResetToggle}
+            >
+              승인
+            </button>
+          </div>
+
           <div className={styles.item}>
             <label htmlFor="count-questions">문항 수 (1~)</label>
             <input
