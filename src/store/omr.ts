@@ -6,7 +6,7 @@ const useOmrStoreBase = create<OmrState>()((set, get) => ({
   questionCount: 45,
   optionCount: 5,
 
-  answers: new Map(),
+  answers: {},
 
   setOmrSettings: (settings) => {
     const { questionCount, optionCount } = settings;
@@ -34,19 +34,19 @@ const useOmrStoreBase = create<OmrState>()((set, get) => ({
   },
 
   setAnswer: (question: number, answer: number | undefined) => {
-    const nextAnswers = new Map(get().answers);
+    const nextAnswers = { ...get().answers };
 
     if (typeof answer === "number") {
-      nextAnswers.set(question, answer);
+      nextAnswers[question] = answer;
     } else {
-      nextAnswers.delete(question);
+      delete nextAnswers[question];
     }
 
     set({ answers: nextAnswers });
   },
 
   resetAnswer: () => {
-    set({ answers: new Map() });
+    set({ answers: {} });
   },
 }));
 
@@ -66,7 +66,7 @@ type OmrSettingsSetter = {
 };
 
 type OmrAnswersState = {
-  answers: Map<number, number>;
+  answers: { [question: number]: number | undefined };
 };
 type OmrAnswersSetter = {
   setAnswer: (question: number, answer: number | undefined) => void;

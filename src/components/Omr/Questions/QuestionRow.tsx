@@ -27,7 +27,7 @@ function QuestionRow({ questionNumber }: Props) {
       {Array.from({ length: optionCount }, (_, index) => (
         <QuestionOption
           key={index + 1}
-          checked={answers.get(questionNumber) === index + 1}
+          checked={answers[questionNumber] === index + 1}
           onCheckedChange={handleCheckedChangeWith(index + 1)}
         >
           {index + 1}
