@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 import QuestionRow from "./QuestionRow";
 
 function Questions() {
-  const questionCount = useOmrStore.use.questionCount();
+  const questionCount = useOmrStore((state) => state.questionCount);
 
   return (
     <div className={styles.question}>

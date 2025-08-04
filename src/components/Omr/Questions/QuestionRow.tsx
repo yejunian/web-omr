@@ -8,9 +8,9 @@ type Props = {
 };
 
 function QuestionRow({ questionNumber }: Props) {
-  const optionCount = useOmrStore.use.optionCount();
-  const answers = useOmrStore.use.answers();
-  const setAnswer = useOmrStore.use.setAnswer();
+  const optionCount = useOmrStore((state) => state.optionCount);
+  const checkedAnswer = useOmrStore((state) => state.answers[questionNumber]);
+  const setAnswer = useOmrStore((state) => state.setAnswer);
 
   const handleCheckedChangeWith =
     (optionNumber: number) => (checked: boolean) => {
@@ -27,7 +27,7 @@ function QuestionRow({ questionNumber }: Props) {
       {Array.from({ length: optionCount }, (_, index) => (
         <QuestionOption
           key={index + 1}
-          checked={answers[questionNumber] === index + 1}
+          checked={checkedAnswer === index + 1}
           onCheckedChange={handleCheckedChangeWith(index + 1)}
         >
           {index + 1}

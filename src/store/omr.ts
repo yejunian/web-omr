@@ -1,9 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { createSelectors } from "./createSelectors";
-
-const useOmrStoreBase = create<OmrState>()(
+export const useOmrStore = create<OmrState>()(
   persist(
     (set, get) => ({
       questionCount: 45,
@@ -57,8 +55,6 @@ const useOmrStoreBase = create<OmrState>()(
     },
   ),
 );
-
-export const useOmrStore = createSelectors(useOmrStoreBase);
 
 type OmrState = OmrSettingsState &
   OmrSettingsSetter &

@@ -6,10 +6,10 @@ import { useOmrStore } from "@/store/omr";
 import styles from "./index.module.css";
 
 function Settings() {
-  const questionCount = useOmrStore.use.questionCount();
-  const optionCount = useOmrStore.use.optionCount();
-  const setOmrSettings = useOmrStore.use.setOmrSettings();
-  const resetAnswer = useOmrStore.use.resetAnswer();
+  const questionCount = useOmrStore((state) => state.questionCount);
+  const optionCount = useOmrStore((state) => state.optionCount);
+  const setOmrSettings = useOmrStore((state) => state.setOmrSettings);
+  const resetAnswer = useOmrStore((state) => state.resetAnswer);
 
   const [isOpen, setIsOpen] = useState(false);
   const [willReset, setWillReset] = useState(false);
